@@ -1,0 +1,21 @@
+# Project exclude paths
+HELP.md
+target/
+
+### IntelliJ IDEA ###
+.idea
+.jpb
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+### VS Code ###
+.vscode/
