@@ -4,11 +4,11 @@
 
 Este projeto foi desenvolvido como parte do processo seletivo do Zé Delivery, contemplando uma API REST. Segue abaixo os endpoints.
 
-## GET
+**GET**
 - Buscar parceiro por id - [domínio]/desafio-zemerson/br/partner/{idParceiro}
 - Buscar parceiro por coordenadas - [domínio]/desafio-zemerson/br/partner/long={longitude}/lat={latitude}
 
-## POST
+**POST**
 - Criar um Parceiro - [domínio]/desafio-zemerson/br/partner
 
 
