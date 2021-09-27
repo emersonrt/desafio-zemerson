@@ -2,6 +2,7 @@ package com.emersonrt.desafio.zemerson.utils.cruddao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 /**
@@ -46,6 +47,24 @@ public abstract class CrudDaoJpa<T> implements CrudDao<T> {
     public void delete(Object id) {
         T entity = getEntityManager().getReference(entityClass, id);
         getEntityManager().remove(entity);
+    }
+
+    @Override
+    public boolean isNotUnique(String tabela, String coluna, Object value) {
+
+        if (value == null) {
+            return false;
+        }
+
+        Query q = getEntityManager().createNativeQuery(""
+                + " SELECT"
+                + " CASE WHEN COUNT(*) > 0 THEN true ELSE false END"
+                + " FROM " + tabela
+                + " WHERE " + coluna + " = :value");
+
+        q.setParameter("value", value);
+
+        return (boolean) q.getSingleResult();
     }
 
 }

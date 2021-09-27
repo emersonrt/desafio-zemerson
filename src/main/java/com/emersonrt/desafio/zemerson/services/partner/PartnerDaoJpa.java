@@ -20,18 +20,18 @@ public class PartnerDaoJpa extends CrudDaoJpa<Partner> implements PartnerDao {
 
     @Override
     public BigInteger create(PartnerDto dto) {
-        
-        String sql = "INSERT INTO partner (trading_name, owner_name, partner_document, coverage_area, address) \n" 
-                        + "VALUES (:tradingName, :ownerName, :document, st_geomfromgeojson(:coverageArea::JSON), st_geomfromgeojson(:address::JSON)) \n"
+
+        String sql = "INSERT INTO partner (trading_name, owner_name, partner_document, coverage_area, address) \n"
+                        + "VALUES (:tradingName, :ownerName, :document, st_geomfromgeojson(:coverageArea\\:\\:JSON), st_geomfromgeojson(:address\\:\\:JSON)) \n"
                         + "RETURNING id_partner";
-        
+
         Query q = getEntityManager().createNativeQuery(sql);
         q.setParameter("tradingName", dto.getTradingName());
         q.setParameter("ownerName", dto.getOwnerName());
         q.setParameter("document", dto.getDocument());
         q.setParameter("coverageArea", dto.getCoverageArea());
         q.setParameter("address", dto.getAddress());
-        
+
         return (BigInteger) q.getSingleResult();
     }
     

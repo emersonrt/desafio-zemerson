@@ -18,6 +18,5 @@ public class PartnerDto {
     private final String document;
     private final String coverageArea;
     private final String address;
-    
 
 }

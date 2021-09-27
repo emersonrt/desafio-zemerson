@@ -16,5 +16,7 @@ public interface CrudDao<T> {
     T update(T obj);
 
     void delete(Object id);
+
+    public boolean isNotUnique(String tabela, String coluna, Object value);
     
 }

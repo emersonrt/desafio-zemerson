@@ -23,14 +23,7 @@
             <version>1.7.32</version>
             <type>jar</type>
         </dependency>
-        
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.32</version>
-            <scope>test</scope>
-        </dependency>
-        
+
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
@@ -50,12 +43,27 @@
             <version>1.18.8</version>
             <type>jar</type>
         </dependency>
+
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
             <version>4.1.2</version>
             <type>jar</type>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.8.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.7.0</version>
+            <scope>test</scope>
+        </dependency>
+
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -80,7 +88,7 @@
             <artifactId>postgresql</artifactId>
             <version>42.2.23</version>
         </dependency>
-        
+
     </dependencies>
 
     <build>

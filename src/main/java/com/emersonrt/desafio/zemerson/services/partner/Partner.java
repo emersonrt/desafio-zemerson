@@ -24,7 +24,7 @@ public class Partner implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_partner")
+    @Column(name = "id_partner", unique = true)
     private Long idPartner;
     @NotNull
     @Column(name = "trading_name")
@@ -33,7 +33,7 @@ public class Partner implements Serializable {
     @Column(name = "owner_name")
     private String ownerName;
     @NotNull
-    @Column(name = "partner_document")
+    @Column(name = "partner_document", unique = true)
     private String document;
 
     public Long getIdPartner() {

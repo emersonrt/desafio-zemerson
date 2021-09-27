@@ -1,11 +1,12 @@
 package com.emersonrt.desafio.zemerson.services.partner;
 
-import com.emersonrt.desafio.zemerson.utils.FormatUtils;
-import java.math.BigInteger;
+import com.emersonrt.desafio.zemerson.utils.RegexUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import static java.math.BigInteger.*;
+import static java.math.BigInteger.valueOf;
 
 /**
  *
@@ -20,15 +21,8 @@ public class PartnerEjbService implements PartnerLocalService {
         
     @Override
     public Long create(PartnerDto dto) throws Exception {
-        
-        try {
-            
-            validateData(dto);
-            return dao.create(dto).longValue();
-            
-        } catch (Exception ex) {
-            throw ex;
-        }
+        validateData(dto);
+        return dao.create(dto).longValue();
     }
     
     @Override
@@ -60,34 +54,31 @@ public class PartnerEjbService implements PartnerLocalService {
                 .apply(obj);
     }
     
-    private void validateLongLat(String longitude, String latitude) throws Exception {        
-        if (!FormatUtils.isValidLongitude(longitude) || !FormatUtils.isValidLatitude(latitude)) {
-            throw new Exception("Invalid Coordinate!");
+    private void validateLongLat(String longitude, String latitude) throws IllegalArgumentException {
+        if (!RegexUtils.isValidLongitude(longitude) || !RegexUtils.isValidLatitude(latitude)) {
+            throw new IllegalArgumentException("Invalid Coordinate!");
         }
     }
     
-    private void validateData(PartnerDto dto) throws Exception {
-        
-        if (dto.getTradingName().isBlank()) {
-            throw new Exception("Trading Name is obligatory!");
+    private void validateData(PartnerDto dto) throws IllegalArgumentException {
+        if (StringUtils.isEmpty(dto.getTradingName())) {
+            throw new IllegalArgumentException("Trading Name is obligatory!");
         }
-        
-        if (dto.getOwnerName().isBlank()) {
-            throw new Exception("Owner is obligatory!");
+        if (StringUtils.isEmpty(dto.getOwnerName())) {
+            throw new IllegalArgumentException("Owner is obligatory!");
         }
-        
-        if (dto.getDocument().isBlank()) {
-            throw new Exception("Document is obligatory!");
+        if (StringUtils.isEmpty(dto.getDocument())) {
+            throw new IllegalArgumentException("Document is obligatory!");
         }
-        
-        if (dto.getCoverageArea().isBlank()) {
-            throw new Exception("Coverage Area is obligatory!");
+        if (StringUtils.isEmpty(dto.getCoverageArea())) {
+            throw new IllegalArgumentException("Coverage Area is obligatory!");
         }
-        
-        if (dto.getAddress().isBlank()) {
-            throw new Exception("Address is obligatory!");
+        if (StringUtils.isEmpty(dto.getAddress())) {
+            throw new IllegalArgumentException("Address is obligatory!");
         }
-        
+        if (dao.isNotUnique("partner", "partner_document", dto.getDocument())) {
+            throw new IllegalArgumentException("Non unique Document!");
+        }
     }
 
 }
