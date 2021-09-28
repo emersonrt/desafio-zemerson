@@ -30,7 +30,10 @@ git clone https://github.com/emersonrt/desafio-zemerson.git
 # entrar no diretório do projeto
 cd desafio-zemerson
 
-# criar arquivo war
+# executar testes
+./mvn test
+
+# criar arquivo war (build)
 ./mvn clean package
 ```
 
